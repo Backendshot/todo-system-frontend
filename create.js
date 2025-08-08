@@ -1,4 +1,5 @@
 function setupCreateTodoHandler() {
+  const BASE_URL = "192.168.88.14:8080"; // Replace with your actual IP address
   const form = document.getElementById("createTodoForm");
 
   form.addEventListener("submit", async (e) => {
@@ -13,7 +14,7 @@ function setupCreateTodoHandler() {
     }
 
     try {
-      const response = await fetch("http://192.168.88.27:8080/api/v2/create", {
+      const response = await fetch(`http://${BASE_URL}/api/v2/create`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

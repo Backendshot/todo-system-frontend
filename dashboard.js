@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   // ========== Constants ==========
-  const BASE_URL = "http://192.168.88.27:8080";
+  const BASE_URL = "http://192.168.88.14:8080";
   const storedUsername = localStorage.getItem("username");
   const userId = localStorage.getItem("user_id");
   const token = localStorage.getItem("jwt_token");
@@ -28,11 +28,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function setProfileImages() {
     document.querySelectorAll('[id="profile-pic"]').forEach((img) => {
-      img.src = `${BASE_URL}/user/profile-image/${userId}`;
-      img.onerror = () => {
-        img.src =
-          "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/icons/person.svg";
-      };
+      fetch(`${BASE_URL}/user/profile-image/${userId}`)
+      .then(res => res.json())
+      .then(data => {
+        img.src = data.imageUrl;
+      })
+      .catch(() => {
+        img.src = "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/icons/person.svg";
+      });
+      // img.src = `${BASE_URL}/user/profile-image/${userId}`;
+      // img.onerror = () => {
+      //   img.src =
+      //     "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/icons/person.svg";
+      // };
     });
   }
 
@@ -49,7 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const row = document.createElement("tr");
         row.innerHTML = `
           <td>${todo.id}</td>
-          <td>${todo.userId}</td>
+          <td>${todo.user_id}</td>
           <td ${editable ? 'contenteditable="true"' : ""}>${todo.title}</td>
           <td ${editable ? 'contenteditable="true"' : ""}>${
           todo.completed ? "Yes" : "No"

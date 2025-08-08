@@ -16,10 +16,10 @@
       <h5 id="error"></h5>
       <div class="form-group">
         <label for="username">Username:</label>
-        <input type="text" id="username" name="username" />
+        <input type="text" id="username" name="username" required/>
 
         <label for="firstName">First Name:</label>
-        <input type="text" id="firstName" name="firstName" />
+        <input type="text" id="firstName" name="firstName" required/>
 
         <label for="middlename">Middle Name:</label>
         <input type="text" id="middleName" name="middleName" />
@@ -28,16 +28,16 @@
         <input type="text" id="lastName" name="lastName" />
 
         <label for="password">Password:</label>
-        <input type="password" id="password" name="password" />
+        <input type="password" id="password" name="password" required/>
 
         <label for="confirm-password">Confirm Password:</label>
-        <input type="password" id="confirm-password" name="confirm-password" />
+        <input type="password" id="confirm-password" name="confirm-password" required/>
 
         <label for="email">Email:</label>
-        <input type="email" id="email" name="email" />
+        <input type="email" id="email" name="email" required/>
 
         <label for="birthday">Birthdate:</label>
-        <input type="date" id="birthday" name="birthday" />
+        <input type="date" id="birthday" name="birthday" required/>
 
         <label for="image">Upload Image:</label>
         <input type="file" id="image" name="image" accept="image/*" />
@@ -52,6 +52,15 @@
         registerForm.addEventListener("submit", async (e) => {
           e.preventDefault();
 
+          //check if passwords match
+          const password = document.getElementById("password").value;
+          const confirmPassword = document.getElementById("confirm-password").value;
+          if (password !== confirmPassword) {
+            document.getElementById("error").textContent =
+              "Passwords do not match.";
+            return;
+          }
+
           const formData = new FormData(registerForm);
           const roleType = "USER"
 
@@ -59,7 +68,7 @@
 
           try {
             const response = await fetch(
-              "http://192.168.88.27:8080/user/register",
+              "http://192.168.88.14:8080/api/user/register",
               {
                 method: "POST",
                 body: formData,

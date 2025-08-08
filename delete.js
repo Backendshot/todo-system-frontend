@@ -1,4 +1,5 @@
 function setupDeleteTodoHandler() {
+  const BASE_URL = "192.168.88.14:8080"; // Replace with your actual IP address
   document.getElementById("deleteTodoBtn").addEventListener("click", async () => {
     const rows = document.querySelectorAll("#todo-list-delete tr");
     const idsToDelete = [];
@@ -20,7 +21,7 @@ function setupDeleteTodoHandler() {
     try {
       const results = await Promise.all(
         idsToDelete.map((todoId) =>
-          fetch(`http://192.168.88.27:8080/api/v2/delete-table/${todoId}`, {
+          fetch(`http://${BASE_URL}/api/v2/delete-table/${todoId}`, {
             method: "PATCH",
             headers: {
               "Content-Type": "application/json",

@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+  const BASE_URL = "192.168.88.14:8080"; // Replace with your actual IP address
   // Prevent back navigation
   function preventBackNavigation() {
     window.history.forward();
@@ -17,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const password = document.getElementById("password").value.trim();
 
       try {
-        const response = await fetch("http://192.168.88.27:8080/user/login", {
+        const response = await fetch(`http://${BASE_URL}/user/login`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
