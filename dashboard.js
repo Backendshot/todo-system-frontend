@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   // ========== Constants ==========
-  const BASE_URL = "http://192.168.88.14:8080";
+  const BASE_URL = "https://web-production-1de00.up.railway.app/";
   const storedUsername = localStorage.getItem("username");
   const userId = localStorage.getItem("user_id");
   const token = localStorage.getItem("jwt_token");

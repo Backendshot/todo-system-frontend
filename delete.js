@@ -1,5 +1,5 @@
 function setupDeleteTodoHandler() {
-  const BASE_URL = "192.168.88.14:8080"; // Replace with your actual IP address
+  const BASE_URL = "https://web-production-1de00.up.railway.app"; // Replace with your actual IP address
   document.getElementById("deleteTodoBtn").addEventListener("click", async () => {
     const rows = document.querySelectorAll("#todo-list-delete tr");
     const idsToDelete = [];
