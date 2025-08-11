@@ -14,7 +14,7 @@ function setupCreateTodoHandler() {
     }
 
     try {
-      const response = await fetch(`http://${BASE_URL}/api/v2/create`, {
+      const response = await fetch(`${BASE_URL}/api/v2/create`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

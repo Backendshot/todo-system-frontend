@@ -21,7 +21,7 @@ function setupDeleteTodoHandler() {
     try {
       const results = await Promise.all(
         idsToDelete.map((todoId) =>
-          fetch(`http://${BASE_URL}/api/v2/delete-table/${todoId}`, {
+          fetch(`${BASE_URL}/api/v2/delete-table/${todoId}`, {
             method: "PATCH",
             headers: {
               "Content-Type": "application/json",
